@@ -1,4 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
+#include <sys/syscall.h>
 
 typedef struct child{
 	char name[32];
@@ -9,4 +13,4 @@ typedef struct child{
 
 void unit_time();
 
-void fork_process(Child *process);
+int fork_process(Child *process);
