@@ -11,12 +11,17 @@ int fork_process(Child *process){
 	pid_t pid = fork();
 
 	if (pid == 0) {
+		setvbuf(stdout, NULL, _IONBF, 0);
 
+		//fflush(stdout);
 		process->pid = getpid();
-		//printf("%s %d\n", process->name, process->pid);
+		printf("%s %d\n", process->name, process->pid);
+		//fflush(stdout);
 		
 		long start = syscall(335);
+
 		for (int i=0; i < process->exe_time; i++){
+
 			//printf("Child %s execute round %d\n", process->name, i);
 			//long t = syscall(335);
 			//printf("timestamp %ld.%09ld: ", t/1000000000, t%1000000000);

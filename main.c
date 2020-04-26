@@ -1,8 +1,13 @@
 #define _GNU_SOURCE
 #include "process.h"
 #include "policy.h"
+#include <stddef.h>
 
 int main(){
+
+	if (setvbuf(stdout, NULL, _IONBF, 0)){
+		perror("setvbuf");
+	};
 
 	char policy[5];
 	int nprocess = 0;
@@ -13,6 +18,8 @@ int main(){
 	for(int i = 0; i < nprocess; i++){
 		scanf("%s%d%d", process[i].name, &process[i].ready_time, &process[i].exe_time);
 		process[i].pid = -1;
+		process[i].used_time = 0;
+		process[i].turn = 0;
 		//printf("%s %d %d\n", process[i].name, process[i].ready_time, process[i].exe_time);
 	}
 
