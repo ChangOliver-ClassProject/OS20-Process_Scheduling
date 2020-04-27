@@ -80,7 +80,7 @@ case = ['FIFO', 'SJF', 'PSJF', 'RR']
 
 for i in case:
 	for n in range(1, 6):
-		calc_path = 'calc/theoretical/' + i + '_' + str(n) + '_calc.txt'
+		calc_path = 'theoretical/' + i + '_' + str(n) + '_calc.txt'
 		stdout_path = 'output/' + i + '_' + str(n) + '_stdout.txt'
 		dmesg_path = 'output/' + i + '_' + str(n) + '_dmesg.txt'
 		outpath = 'compare/' + i + '_' + str(n) + '_cmp.csv'
