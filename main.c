@@ -12,7 +12,6 @@ int main(){
 	char policy[5];
 	int nprocess = 0;
 	scanf("%s%d", policy, &nprocess);
-	//printf("%s\n%d\n", policy, nprocess);
 
 	Child process[nprocess];
 	for(int i = 0; i < nprocess; i++){
@@ -20,7 +19,6 @@ int main(){
 		process[i].pid = -1;
 		process[i].used_time = 0;
 		process[i].turn = 0;
-		//printf("%s %d %d\n", process[i].name, process[i].ready_time, process[i].exe_time);
 	}
 
 	assign_cpu(getpid(), 0);

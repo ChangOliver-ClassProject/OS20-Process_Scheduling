@@ -2,14 +2,6 @@
 #include "process.h"
 #include "policy.h"
 
-void info(int nprocess, Child process[]){
-	fprintf(stderr, "================================\n");
-	for (int i = 0; i < nprocess; i++){
-		fprintf(stderr, "%s %d %d %d\n", process[i].name, process[i].exe_time, process[i].used_time, process[i].turn);
-	}
-	fprintf(stderr, "================================\n");
-}
-
 void assign_cpu(int pid, int num){
 	cpu_set_t mask;							
 	CPU_ZERO(&mask);						
@@ -45,8 +37,7 @@ void FIFO(int nprocess, Child process[]){
 	int finished = 0;
 	qsort(process, nprocess, sizeof(Child), sort_ready);
 	for (int time = 0; time >= 0; time++){
-		//if (time % 500 == 0)
-			//fprintf(stderr, "Scheduler execute round %d\n", time);
+
 		if (running_pid != -1 && process[running_index].exe_time == 0){
 			waitpid(running_pid, NULL, 0);
 			running_pid = -1;
@@ -86,10 +77,7 @@ void SJF(int nprocess, Child process[]){
 	int finished = 0;
 	qsort(process, nprocess, sizeof(Child), sort_exe);
 	for (int time = 0; time >= 0; time++){
-		//if (time % 500 == 0){
-			//fprintf(stderr, "Scheduler execute round %d\n", time);
-			//info(nprocess, process);
-		//}
+
 		if (running_pid != -1 && process[running_index].exe_time == 0){
 			waitpid(running_pid, NULL, 0);
 			running_pid = -1;
@@ -128,8 +116,7 @@ void PSJF(int nprocess, Child process[]){
 	int finished = 0;
 	qsort(process, nprocess, sizeof(Child), sort_exe);
 	for (int time = 0; time >= 0; time++){
-		//if (time % 500 == 0)
-		//	fprintf(stderr, "Scheduler execute round %d\n", time);
+
 		if (running_pid != -1 && process[running_index].exe_time == 0){
 			waitpid(running_pid, NULL, 0);
 			running_pid = -1;
@@ -179,13 +166,7 @@ void RR(int nprocess, Child process[]){
 	
 	for (int time = 0; time >= 0; time++){
 		changed = 0;
-		//if (time % 500 == 0){
-			//fprintf(stderr, "Scheduler execute round %d\n", time);
-			//info(nprocess, process);
-			//fprintf(stderr, "queue = %d\n", queue);
-			//fprintf(stderr, "nready = %d\n", nready);
-			//fprintf(stderr, "changed = %d\n", changed);
-		//}
+
 		if (running_pid != -1 && process[running_index].exe_time == 0){
 			waitpid(running_pid, NULL, 0);
 			process[running_index].used_time = 0;

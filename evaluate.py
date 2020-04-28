@@ -69,7 +69,7 @@ def cmp(unit, calc_path, stdout_path, dmesg_path, output):
 		f.write(' , ,Name,Start,End,Elapsed Time\n')
 		for n in range(1, nprocess+1):
 			idx = 'P'+ str(n)
-			f.write(' , ,{},{},{},{}\n'.format(idx, abs(process[idx][3]-real_start-process[idx][0]), abs(process[idx][4]-real_start-process[idx][1]), abs(process[idx][5]-process[idx][2])))
+			f.write(' , ,{},{},{},{}\n'.format(idx, process[idx][3]-real_start-(process[idx][0]-theory_start)*t_unit, process[idx][4]-real_start-(process[idx][1]-theory_start)*t_unit, process[idx][5]-process[idx][2]))
 			
 
 
