@@ -1,5 +1,0 @@
-The demo video exceeds 100MB and could not be uploaded to Github.  
-Please download the video from the release section, which can be found here:  
-https://github.com/ChangOliver/OS20-Process_Scheduling/releases/download/0.0.0/demo.mp4
-
-Thank you very much!
